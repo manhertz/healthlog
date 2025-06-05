@@ -65,14 +65,14 @@ We can use any HTTP client to make HTTP requests to these endpoints (Postman, cu
 
 On local machine, you can use curl commands to send requests to the server. For example, query all health logs:
 
-```
+```bash
 curl 'http://localhost:3000/logs' --header 'Authorization: Bearer <YOUR_API_TOKEN>'
 ```
 
 Getting a list of health logs filtered by `severity` and `after` date:
 
 ```ts
-curl --header 'Authorization: Bearer xxx_servertoken' "http://macmini:3000/logs?severity=info&after=2025-05-02T18:12:00Z"
+curl --header 'Authorization: Bearer xxx_servertoken' "http://localhost:3000/logs?severity=info&after=2025-05-02T18:12:00Z"
 ```
 
 Or a small statistics about severities:
@@ -109,6 +109,7 @@ Some comments:
 - We use SQLite as a database, which is suitable for this test challenge but is not scalable. (i.e. scaling the service horizontally). We can use other databases like MzSQL or PostgreSQL,. Sequelize ORM is used to interact with the database, no DB-specific code is used here, just the proper instantiation and migrations have to be implemented. (i.e. setting up the connection string in env vars, etc).
 - Naming conventions follow usual TS and NestJS conventions. See Dev's guidebook for more infos.
 - This is a base API implementation without protection mechanism. No rate-limiting or throttling mechanisms have been included. This can be implemented in the app as well (NestJS also has got some support) or in the infrastructure itself as well. Usually load balancers or the API gateways are offering it, so better to leave it to the infrastructure layer.
+- No https is enabled. It also depends on the infrastructure how to manage it.
 
 Further improvements can include:
 - Implementing a proper logging system.
