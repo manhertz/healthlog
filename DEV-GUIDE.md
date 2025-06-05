@@ -26,11 +26,11 @@ Any identification of the person and the person's qualified sensitive personal d
 
 The business project itself is related to a group of patients where the existence of the patient personal data itself is also considered as _qualified sensitive personal data_.
 
-This service is getting _qualified sensitive personal data_ as an event )health log) where the patient_id is alredy identifies the patient (there is an other database in another service where we can get the personal data viathis patient id). So we must anonymize the patient id immediately without storing it.
+This service is getting _qualified sensitive personal data_ as an event (health log) where the patient_id is already identifies the patient (there is an other database in another service where we can get the personal data via this patient id). So we must anonymize the patient id immediately without storing it.
 
 Anonymization:
 - We should not store the patient id except temporarily in the request body (only under processing).
-- We should generate a obfuscate or randomize the patient id into a new UUID for each incoming request.
+- We should generate a obfuscated or randomized patient id for each incoming request.
 - We should remove the patient id from the response body if it exists there even if it is anonymized.
 
 Considerations in the Statistics:
@@ -47,7 +47,7 @@ Represents a single health log entry in the Log Monitor service. It includes fie
 
 ### Presentation Layer
 
-Handles HTTP requests and responses using controllers and DTOs. Provides endpoints for creating, retrieving, updating, and deleting health logs.
+Handles HTTP requests and responses using controllers and DTOs. Provides endpoints for batch uploadiong and retrieving health logs and connected stats.
 
 ### Application Layer
 
@@ -65,7 +65,7 @@ To run the project locally you need to follow the [README.md](./README.md) instr
 
 ### Docker deployment
 
-Dockerfile is prepared and it can be used to build and deploy the image in the standard way (docker build or docker compose).
+Dockerfile is prepared and it can be used to build and deploy the image in the standard way (docker build or docker compose). Environment variables are passed by the docker environment.
 
 ### Cloud deployment
 
@@ -106,7 +106,7 @@ Examples:
   - Class names: `HealthLogService`, `HealthLogController`
   - Interface names: `HealthLog`, `HealthLogFilters`, `IHealthLogRepository`
   - Type names: `HealthLogStatisticsResult`
-  - Enum names: `EHealthLogSeverities`, `EStatisticTypes`, `ENodeEnvironments`, `ELogLevels`
+  - Enum names with prefixing: `EHealthLogSeverities`, `EStatisticTypes`, `ENodeEnvironments`, `ELogLevels`
 
 - **camelCase** for:
   - Variables: `healthLogs`, `queryParams`, `logMessage`
