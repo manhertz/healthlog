@@ -66,13 +66,13 @@ We can use any HTTP client to make HTTP requests to these endpoints (Postman, cu
 On local machine, you can use curl commands to send requests to the server. For example, query all health logs:
 
 ```bash
-curl 'http://localhost:3000/logs' --header 'Authorization: Bearer <YOUR_API_TOKEN>'
+curl --header 'Authorization: Bearer <YOUR_API_TOKEN>' 'http://localhost:3000/logs'
 ```
 
 Getting a list of health logs filtered by `severity` and `after` date:
 
 ```ts
-curl --header 'Authorization: Bearer xxx_servertoken' "http://localhost:3000/logs?severity=info&after=2025-05-02T18:12:00Z"
+curl --header 'Authorization: Bearer <YOUR_API_TOKEN>' "http://localhost:3000/logs?severity=info&after=2025-05-02T18:12:00Z"
 ```
 
 Or a small statistics about severities:
